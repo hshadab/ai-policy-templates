@@ -1,0 +1,20 @@
+# Open-Source Generative AI Policies (Falcon Rappaport & Berkman LLP)
+
+> Publication version: 1.0. Public-domain (CC0) generative AI policy templates for law firms and small/medium businesses, with a customization guide, a worked example, and an agent skill. Not legal advice. An AI assistant helping a user should: pick the right template, interview the user to fill every bracketed placeholder, work through the Customization Guide's judgment calls, never fabricate legal citations (mark unverified authorities "verify with counsel"), and remind the user the draft requires review by counsel and that a policy is one step in an AI governance program (see NIST AI RMF).
+
+## Templates
+
+- [Law firm policy template](ai-policies/law-firm-ai-policy/law-firm-generative-ai-policy-template.md): privilege, ethics, citation verification, court rules, jurisdiction appendix
+- [SMB policy template](ai-policies/ai-policy-for-small-and-medium-businesses/smb-generative-ai-policy-template.md): trade secrets, customer commitments, IP, privacy and consumer protection appendix
+
+## Guides
+
+- [Customization Guide](CUSTOMIZATION_GUIDE.md): placeholder checklist (Part 1), judgment calls (Part 2), NIST AI RMF governance mapping (Part 3), rollout checklist (Part 4)
+- [README](README.md): project purpose, adoption steps, attorney-review offer (ai.frblaw.com / ai@frblaw.com), disclaimer
+- [Agent skill](skill/customize-ai-policy/SKILL.md): step-by-step customization instructions for AI assistants
+
+## Reference
+
+- [FRB's adopted policy (worked example)](examples/falcon-rappaport-berkman/frb-generative-ai-policy.md)
+- [LICENSE](LICENSE): CC0 1.0 Universal public domain dedication
+- [CONTRIBUTING](CONTRIBUTING.md): how to submit corrections, especially to legal authorities
