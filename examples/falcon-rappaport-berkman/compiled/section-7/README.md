@@ -104,13 +104,13 @@ curl -O https://raw.githubusercontent.com/frblaw/ai-policy-templates/main/exampl
 
 The practical starting point is the facts table above: spend thirty minutes mapping each fact to the system that asserts it in your firm.
 
-**Run the check.** The rules file is standard SMT-LIB and evaluates on any SMT solver, independent of any vendor. With [Z3](https://github.com/Z3Prover/z3) installed, this one free, offline command checks the logic:
+**Run the check.** The rules file is standard SMT-LIB and evaluates on any SMT solver, independent of any vendor. With [Z3](https://github.com/Z3Prover/z3) installed, this one free, offline command confirms the ruleset loads and is internally consistent (it returns `sat`, the 17 assertions with no contradiction):
 
 ```bash
 z3 autonomous-agent-rules.smt2
 ```
 
-To get a cryptographic receipt with each decision, run checks through the Preflight API instead: create an API key via `POST https://api.icme.io/v1/createUserCard` ($5 by card), then call `POST https://api.icme.io/v1/checkIt` with the policy ID above and your action's facts (about a cent per decision). The scenarios in [`receipts.json`](receipts.json) can be re-run verbatim and compared against the recorded verdicts. Compiling your own policy text costs $3 via `POST /v1/makeRules`; the full three-command walkthrough is in the [quickstart](https://docs.icme.io/documentation/getting-started/quickstart.md). An account-free per-check option also exists (`POST /v1/checkItPaid`, $0.10 via x402 payment), and the desktop app linked above needs no API knowledge at all.
+A decision comes from adding an action's facts to the file and re-checking: a permitted action stays `sat`, a prohibited one turns `unsat`. To get a cryptographic receipt with each decision, run checks through the Preflight API instead: create an API key via `POST https://api.icme.io/v1/createUserCard` ($5 by card), then call `POST https://api.icme.io/v1/checkIt` with the policy ID above and your action's facts (about a cent per decision). The scenarios in [`receipts.json`](receipts.json) can be re-run verbatim and compared against the recorded verdicts. Compiling your own policy text costs $3 via `POST /v1/makeRules`; the full three-command walkthrough is in the [quickstart](https://docs.icme.io/documentation/getting-started/quickstart.md). An account-free per-check option also exists (`POST /v1/checkItPaid`, $0.10 via x402 payment), and the desktop app linked above needs no API knowledge at all.
 
 **Verify the receipts.** Each decision in [`receipts.json`](receipts.json) carries a proof ID that can be checked independently, without trusting us or the Firm: with an API key, call `POST https://api.icme.io/v1/verifyProof` with the proof ID. The proofs are single-use and have been left unconsumed for exactly this purpose: the first reader to verify one consumes it, and a consumed proof is itself a record that someone checked.
 
