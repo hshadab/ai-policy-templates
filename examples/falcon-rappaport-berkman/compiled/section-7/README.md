@@ -8,6 +8,14 @@ This folder demonstrates that check on Section 7's autonomous-agent provisions, 
 
 A useful property of these provisions: every fact they need already exists as a record somewhere in a firm. No new interface, no approval popup, no workflow to build. Enforcement is wiring existing facts to a checkpoint.
 
+## In plain English
+
+- The Firm's policy already sets rules for AI agents that act on their own: get consent before using them, don't touch privileged or confidential material without permission, don't run unsupervised tasks on client data unless approved and set to stop on errors, and don't hand work from one AI tool to another without approval.
+- We took those sentences, word for word, and turned them into a working check. Before an agent acts, the system answers "allowed" or "blocked" based on the policy.
+- We ran eight live tests, two per rule: one that should pass and one that should be blocked. All eight came out correctly, including an agent being stopped from reading a privileged document without authorization.
+- Every decision comes with a cryptographic receipt, like a notarized record proving which rule fired, against which facts, at what time. Anyone can verify a receipt later without trusting us or any vendor.
+- Nothing changes for attorneys and nothing new needs to be clicked. Every fact these rules rely on (consent records, document labels, approvals, tool settings) already exists in the Firm's systems.
+
 ## The rules, verbatim
 
 Sentence 1 and sentence 3 of Section 7, plus the Section 2 definition, character-for-character from the adopted policy:
