@@ -1,0 +1,93 @@
+{
+  "description": "Cryptographic receipts for machine-checked decisions against the compiled autonomous-agent provisions of Section 7. Each check was evaluated by ICME Preflight (https://docs.icme.io): a local SMT solver and an independent cloud automated-reasoning engine both evaluate the action; either engine returning UNSAT blocks it. Every check produces a zero-knowledge proof that can be independently verified (single-use) without re-running the solvers. Proofs are left unconsumed so the Firm can verify them independently via POST /v1/verifyProof.",
+  "policy_id": "329b0614-6159-46cf-9599-a3cebd6be180",
+  "compiled_from": "Section 7, sentences 1 and 3, plus the Section 2 definition of Sensitive Information (all verbatim) of the FRB Generative AI Policy, Version 2.0, effective June 18, 2026",
+  "smt_file": "autonomous-agent-rules.smt2",
+  "checks": [
+    {
+      "test": "consent-granted",
+      "rule": "Prior written consent before using Agentic AI Tools",
+      "scenario": "Agentic AI Tool used; prior written consent from the Administrator on record",
+      "expected": "SAT (permitted)",
+      "result": "SAT",
+      "check_id": "3589272a-8ce6-4766-9f8c-2ae783f47944",
+      "proof_id": "599fa9cd-19ba-43c2-bff2-aece7e6f2e7c",
+      "proof_status": "proof ID issued; generation pending at time of publication"
+    },
+    {
+      "test": "consent-missing",
+      "rule": "Prior written consent before using Agentic AI Tools",
+      "scenario": "Agentic AI Tool used; no consent record",
+      "expected": "UNSAT (blocked)",
+      "result": "UNSAT",
+      "check_id": "276b12fe-1419-45a4-bff7-1f86c5e61495",
+      "proof_id": "672c0020-35cf-4dc2-bdd4-225dbb66d5b6",
+      "proof_status": "generated, valid, unconsumed"
+    },
+    {
+      "test": "sensitive-authorized",
+      "rule": "No autonomous access to Sensitive Information without authorization",
+      "scenario": "Autonomous access to a document subject to privilege; authorization on record",
+      "expected": "SAT (permitted)",
+      "result": "SAT",
+      "check_id": "74c3eb9c-e2f8-4f58-ad3b-0ff0919e4d38",
+      "proof_id": "140fd51c-8dae-41e6-9f89-fefdbc909e96",
+      "proof_status": "proof ID issued; generation pending at time of publication"
+    },
+    {
+      "test": "sensitive-unauthorized",
+      "rule": "No autonomous access to Sensitive Information without authorization",
+      "scenario": "Autonomous access to a document subject to privilege; no authorization",
+      "expected": "UNSAT (blocked)",
+      "result": "UNSAT",
+      "check_id": "3a455a8d-115d-4d9d-9f45-0f180a794a6d",
+      "proof_id": "0a5ce99c-d4d1-449f-8c21-52350d9a58db",
+      "proof_status": "proof ID issued; generation pending at time of publication"
+    },
+    {
+      "test": "unattended-compliant",
+      "rule": "No unattended client-data tasks unless Firm-approved and configured to halt on error",
+      "scenario": "Unattended task involving client data; Firm-approved and configured to halt on error",
+      "expected": "SAT (permitted)",
+      "result": "SAT",
+      "check_id": "12f770cc-e8be-417c-9efe-837afd34adde",
+      "proof_id": "b35bcbdc-ae8c-475b-987d-ce11143f44ac",
+      "proof_status": "proof ID issued; generation pending at time of publication"
+    },
+    {
+      "test": "unattended-no-halt-on-error",
+      "rule": "No unattended client-data tasks unless Firm-approved and configured to halt on error",
+      "scenario": "Unattended task involving client data; Firm-approved but NOT configured to halt on error: blocked solely by the missing halt-on-error configuration",
+      "expected": "UNSAT (blocked)",
+      "result": "UNSAT",
+      "check_id": "3a3e142b-30fa-48ca-a160-c82506646708",
+      "proof_id": "ef29b925-9d77-4821-a9eb-5fe5b7b92ba1",
+      "proof_status": "proof ID issued; generation pending at time of publication"
+    },
+    {
+      "test": "chaining-approved",
+      "rule": "No chaining multiple Agentic AI Tools without written approval",
+      "scenario": "Two Agentic AI Tools chained; written approval on record",
+      "expected": "SAT (permitted)",
+      "result": "SAT",
+      "check_id": "3d5e39cd-bef5-4c3f-b7bb-fa5356deeb1d",
+      "proof_id": "5553841e-50f6-4ffa-924c-de949c7a5c6c",
+      "proof_status": "proof ID issued; generation pending at time of publication"
+    },
+    {
+      "test": "chaining-unapproved",
+      "rule": "No chaining multiple Agentic AI Tools without written approval",
+      "scenario": "Two Agentic AI Tools chained; no written approval",
+      "expected": "UNSAT (blocked)",
+      "result": "UNSAT",
+      "check_id": "9db69464-5ad1-489d-9e7d-401341e90d52",
+      "proof_id": "7f97cfd6-6f4a-4649-9593-e19705d8d4d6",
+      "proof_status": "proof ID issued; generation pending at time of publication"
+    }
+  ],
+  "notes": [
+    "Proofs are single-use for verification and have been left unconsumed so the Firm can verify them independently via POST /v1/verifyProof.",
+    "At publication, the zero-knowledge proof for the blocked consent decision (proof 672c0020...) is confirmed generated and valid. The remaining proof IDs were issued at check time but their proofs were still generating; they can be retrieved via GET /v1/proof/{id} once complete.",
+    "Natural-language fact extraction proved sensitive to phrasing: negated or implicit facts were sometimes dropped unless stated explicitly, and several checks required rephrasing before both verification engines agreed. Production integrations should assert facts as structured values from authoritative systems rather than narrating them."
+  ]
+}
