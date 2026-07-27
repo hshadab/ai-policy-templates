@@ -2,7 +2,7 @@
 
 # Governing Fully Autonomous Agents: Compiling Section 7
 
-When an AI tool has a human in the loop, the human is the control: a person sees each action before it happens, and the policy is enforced by the person clicking. The unsolved problem is the other half of Section 7, the provisions that govern agents acting **autonomously**, when nobody is watching. An agent reaching for a privileged document mid-task, an unattended job running against client data overnight, one agent handing work to another. There is no click to intercept and no person to notice. Either a machine checks these rules before the action executes, or they are enforced only in retrospect.
+When a person is using an AI tool, that person is the safeguard: they see each action before it happens and approve it by clicking. Section 7's harder half is the part that governs AI agents acting **on their own**, when no one is watching — an agent opening a privileged document in the middle of a task, an unattended job running against client data overnight, one agent handing work off to another. There is no click to catch and no one to notice. A rule like that is only enforced if a machine checks it before the action runs; otherwise the firm finds out only afterward.
 
 This folder demonstrates that check on Section 7's autonomous-agent provisions, compiled **verbatim** (no paraphrase, no restatement) into formal logic using [ICME Preflight](https://docs.icme.io), then exercised with live decisions that each produce an independently verifiable cryptographic receipt.
 
@@ -24,7 +24,7 @@ Sentence 1 and sentence 3 of Section 7, plus the Section 2 definition, character
 
 > "Prohibited uses include: autonomous access to Sensitive Information without authorization; unattended tasks involving client data unless Firm-approved and configured to halt on error; and chaining multiple Agentic AI Tools without written approval."
 
-> "**'Sensitive Information':** Client Confidential Information, Firm proprietary information, personal data, Material Nonpublic Information ('MNPI'), and any information subject to privilege or work product protection."
+> **“Sensitive Information”:** Client Confidential Information, Firm proprietary information, personal data, Material Nonpublic Information (“MNPI”), and any information subject to privilege or work product protection.
 
 That is four enforceable rules in one compiled policy:
 
@@ -80,7 +80,7 @@ Eight live decisions were run, two per rule. Full receipts (check IDs, proof IDs
 
 Two rows deserve a note. The unattended blocked case has approval *present*: it is blocked solely because halt-on-error is missing, demonstrating that the compiled conjunction enforces both conditions, not just "no permission means no." And the sensitive-information blocked case is the scenario this whole exercise exists for: an agent, mid-task, autonomously reaching for a privileged document with no one watching.
 
-Every decision produced a zero-knowledge proof (~93 KB) that anyone holding the proof ID can verify independently, without re-running the check and without access to the policy internals. All eight proofs are generated and confirmed valid; their metadata (policy hashes, timestamps) is recorded in `receipts.json`. Proofs are single-use for verification and have been left unconsumed so the Firm can verify them itself. This is the operational counterpart of Section 9.2's reserved monitoring and audit rights: every agent decision, permitted or blocked, leaves a tamper-evident record of *which rule fired against which asserted facts*.
+Every decision produced a zero-knowledge proof (~94 KB) that anyone holding the proof ID can verify independently, without re-running the check and without access to the policy internals. All eight proofs are generated and confirmed valid; their metadata (policy hashes, timestamps) is recorded in `receipts.json`. Proofs are single-use for verification and have been left unconsumed so the Firm can verify them itself. This is the operational counterpart of Section 9.2's reserved monitoring and audit rights: every agent decision, permitted or blocked, leaves a tamper-evident record of *which rule fired against which asserted facts*.
 
 ## Deployment patterns
 

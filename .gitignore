@@ -4,3 +4,8 @@ Thumbs.db
 
 # LibreOffice lock files
 .~lock.*#
+
+# Secrets / credentials
+.env
+*.key
+.icme_api_key
